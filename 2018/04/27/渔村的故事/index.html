@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'ZV0EGDRD8C',
+      apiKey: '01ab18713b33dcc47e43484208996a80',
+      indexName: 'hexo_hamger',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="我听过“薛兆丰的经济学课”，其中有一个渔村的故事，讲的非常精彩，但是当我想转述给别人的时候却不知道从何讲起，所以我再看了一遍，把主要内容记下来，故事很长，我已尽力精炼。 故事的开端话说很久很久以前，有一个渔村，渔村里生活着1000位渔民，每人每天都打4条鱼。日出而作，日落而息，周而复始。此时你可以很容易地算出，这个渔村的日总产量是4000条鱼。但是有一天，从天而降的一艘渔船打破了平静的小渔村，故事">
+<meta name="keywords" content="economics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渔村的故事">
+<meta property="og:url" content="https://hangermeng.top/2018/04/27/渔村的故事/index.html">
+<meta property="og:site_name" content="Hanger&#39;s Blog">
+<meta property="og:description" content="我听过“薛兆丰的经济学课”，其中有一个渔村的故事，讲的非常精彩，但是当我想转述给别人的时候却不知道从何讲起，所以我再看了一遍，把主要内容记下来，故事很长，我已尽力精炼。 故事的开端话说很久很久以前，有一个渔村，渔村里生活着1000位渔民，每人每天都打4条鱼。日出而作，日落而息，周而复始。此时你可以很容易地算出，这个渔村的日总产量是4000条鱼。但是有一天，从天而降的一艘渔船打破了平静的小渔村，故事">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-19T06:42:29.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="渔村的故事">
+<meta name="twitter:description" content="我听过“薛兆丰的经济学课”，其中有一个渔村的故事，讲的非常精彩，但是当我想转述给别人的时候却不知道从何讲起，所以我再看了一遍，把主要内容记下来，故事很长，我已尽力精炼。 故事的开端话说很久很久以前，有一个渔村，渔村里生活着1000位渔民，每人每天都打4条鱼。日出而作，日落而息，周而复始。此时你可以很容易地算出，这个渔村的日总产量是4000条鱼。但是有一天，从天而降的一艘渔船打破了平静的小渔村，故事">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hanger's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://hangermeng.top/2018/04/27/渔村的故事/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>渔村的故事 | Hanger's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanger's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">The brain is a good thing if you often use it.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangermeng.top/2018/04/27/渔村的故事/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanger">
+      <meta itemprop="description" content="Making progress every day">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanger's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">渔村的故事
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-04-27 21:57:02" itemprop="dateCreated datePublished" datetime="2018-04-27T21:57:02+08:00">2018-04-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-19 14:42:29" itemprop="dateModified" datetime="2021-01-19T14:42:29+08:00">2021-01-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我听过“薛兆丰的经济学课”，其中有一个渔村的故事，讲的非常精彩，但是当我想转述给别人的时候却不知道从何讲起，所以我再看了一遍，把主要内容记下来，故事很长，我已尽力精炼。</p>
+<h3 id="故事的开端"><a href="#故事的开端" class="headerlink" title="故事的开端"></a>故事的开端</h3><p>话说很久很久以前，有一个渔村，渔村里生活着1000位渔民，每人每天都打4条鱼。日出而作，日落而息，周而复始。此时你可以很容易地算出，这个渔村的日总产量是4000条鱼。但是有一天，从天而降的一艘渔船打破了平静的小渔村，故事就此展开。</p>
+<a id="more"></a>
+<h3 id="集体所有制"><a href="#集体所有制" class="headerlink" title="集体所有制"></a>集体所有制</h3><p>其中一个人发现了这艘渔船，当然这艘船就归他了。乘坐这艘渔船出海打渔，能收获很多的鱼。而船主是一个民主党人，他决定按“集体所有制”的方式进行管理。首先让我们看一下，集体所有制的含义：一是经济平等，即平均分配收益；而是政治平等，即一人一票来决定是否让新人加入。<br>一个出海能打到6条鱼（平均产量是6条鱼），二个人出海能打到16条鱼（平均产量是8条鱼，第二个人加入的边际收益是10条鱼），之后加入的人越来越多，但是人数是有上限的，这个上限到来的时候就是平均产量下降的时候，比如第四个加入会使平均产量变为7.5条鱼，那船上的三个人就不会同意他上船，所以最终船上只会有三个人。<br>但是，事实真的是这样吗？<strong>人是有主观能动性的</strong>，我们永远不能抛开这个点来思考社会问题，第四个人可以分0.5条鱼给其他三个人来争取到上船的机会，因为这样他能得到6条鱼，依然比他在岸上的4条鱼收益要高。以此类推直到最后一个上船的人收益和岸上差不多。</p>
+<h3 id="私有制"><a href="#私有制" class="headerlink" title="私有制"></a>私有制</h3><p>虽然船主是一个热爱平等的人，但是他太太并不是，她就每天和船主说；“把船收回来，变成你的私有财产，这样咱们家的收入才会增加”，最后船主决定采用“私有制”来进行管理。私有制的含义是他当老板雇佣别人来船上打工，付完工资以后的剩余财富归他。<br>这种情况下，边际收益和边际成本确定上船人数。假定第一个人上船的边际收益是6条鱼，第二个10条，第三个人8条，第四个人6条，第五个人4条，第六个人2条，后边上船的人边际收益越来越小。老板会雇佣第四个人上船吗？会的，因为他给每个人的工资是4条鱼，第四个人上船可以为他带来2条鱼的收益，所以他会雇佣第四个人。老板会雇佣第五个人上船吗？这个看老板心情。但是老板会雇佣第六个人吗？不会的，因为那是亏本生意。<br>当船上有5个人时，这艘船的<strong>经济价值实现了最大化</strong>，也就是14条鱼（收益-成本）。但是久而久之，私有制会产生一个问题，那就是贫富分化。</p>
+<h3 id="全员所有制"><a href="#全员所有制" class="headerlink" title="全员所有制"></a>全员所有制</h3><p>时间一天天的过去，船主家里越来越富，就有人开始讨论：“你看他小时候和我们一起玩，本事不大，就因为第一个发现了船，就比我们富有那么多。”后来议论越来越大，最后全村决定把船收归公有，船主只能服从。<br>此后，为了避免贫富差距过大，不患寡而患不均，村民决定采用“全员所有制”。顾名思义，就是村里的所有人都可以使用这艘船，在这种情况下会有多少人上船呢？答案就是当船上的人平均只能打到4条鱼时的人数。这个时候有没有这艘船其实已经不重要了，因为你在船上的收益等于你在岸上的收益，也就是说，此时这艘船的经济价值已经荡然无存了。这就是“<strong>公地的悲剧</strong>”，1833年英国经济学家威廉·劳埃德(William Lloyd)提出这个概念。</p>
+<h3 id="政府所有制"><a href="#政府所有制" class="headerlink" title="政府所有制"></a>政府所有制</h3><p>全员所有制执行了一段时间后，人们发现船上和岸上的收益其实差不多，人们开始纷纷回想起以前的美好时光。于是村里有一些思想家和改革家提出，建立一个“渔村资产管理委员会”，由委员会来决定上船的人数，同时收益归全社会所有。结果大家都同意了，由德才兼备的政府官员来管理这艘渔船，这就是“政府所有制”。那么在政府所有制下会有多少人上船呢？<br>回忆一下，之前的三种制度下针对这个问题都是有确切答案的。集体所有制下，船上的人关注的是平均收益的不下降。私有制下，船主关注的是边际收益最大化。全员所有制下，人们关注的是船上的平均收益和岸上的平均收益的对比。现在问，政府所有制下会有多少人上船？到底是关注平均收益不下降、平均收益不低于岸上的收益、还是边际产量？政府到底想要最大化什么？答案是：<strong>不知道</strong>。<br>这恰恰是问题所在。<strong>政府的目标是多元化的</strong>，不像个人那么简单明了，而这恰恰是政府存在理由。政府需要平衡各方的利益，所以政府的行为难以预测。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>集体看平均，私有重收益，全员盯对比，政府顾全局。<br>四种所有制是各有优劣的，并存于现实生活中，原因是：社会本身并不一个单一的经济体；制度本身就有一个漫长的尝试、筛选、存活的过程；私有制看似有很大的收益，但实施这种制度成本巨大。<br>不存在所谓的“大多数人的利益”。在集体所有制下，大多数人指的是已经在船上的人；在私有制下，大多数人指的是总财富最大化；在全员所有制下，大多数人指的是整个渔村的每一个人；在政府所有制下，大多数人指的是那些代表民众的官员。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/economics/" rel="tag"># economics</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/11/实现bind函数/" rel="next" title="实现bind函数">
+                <i class="fa fa-chevron-left"></i> 实现bind函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/06/沉默/" rel="prev" title="沉默">
+                沉默 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hanger">
+            
+              <p class="site-author-name" itemprop="name">Hanger</p>
+              <p class="site-description motion-element" itemprop="description">Making progress every day</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hamger" title="GitHub &rarr; https://github.com/hamger" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:2313303800@qq.com" title="E-Mail &rarr; mailto:2313303800@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#故事的开端"><span class="nav-number">1.</span> <span class="nav-text">故事的开端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集体所有制"><span class="nav-number">2.</span> <span class="nav-text">集体所有制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有制"><span class="nav-number">3.</span> <span class="nav-text">私有制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全员所有制"><span class="nav-number">4.</span> <span class="nav-text">全员所有制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#政府所有制"><span class="nav-number">5.</span> <span class="nav-text">政府所有制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanger</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=7.0.1"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

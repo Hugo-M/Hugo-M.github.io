@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'ZV0EGDRD8C',
+      apiKey: '01ab18713b33dcc47e43484208996a80',
+      indexName: 'hexo_hamger',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="平时的工作中，经常会遇到渲染列表的需求，比如下面的代码123456789var data = [&amp;#123;id: 1, name: &apos;hanger&apos;&amp;#125;, &amp;#123;id: 2, name: &apos;Alice&apos;&amp;#125;]var tableContent = &apos;&apos;data.forEach(function (obj) &amp;#123;    tableContent += &apos;&amp;lt;tr&amp;g">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="列表模板引擎进化之路">
+<meta property="og:url" content="https://hangermeng.top/2017/06/08/列表模板引擎进化之路/index.html">
+<meta property="og:site_name" content="Hanger&#39;s Blog">
+<meta property="og:description" content="平时的工作中，经常会遇到渲染列表的需求，比如下面的代码123456789var data = [&amp;#123;id: 1, name: &apos;hanger&apos;&amp;#125;, &amp;#123;id: 2, name: &apos;Alice&apos;&amp;#125;]var tableContent = &apos;&apos;data.forEach(function (obj) &amp;#123;    tableContent += &apos;&amp;lt;tr&amp;g">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-19T06:42:29.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="列表模板引擎进化之路">
+<meta name="twitter:description" content="平时的工作中，经常会遇到渲染列表的需求，比如下面的代码123456789var data = [&amp;#123;id: 1, name: &apos;hanger&apos;&amp;#125;, &amp;#123;id: 2, name: &apos;Alice&apos;&amp;#125;]var tableContent = &apos;&apos;data.forEach(function (obj) &amp;#123;    tableContent += &apos;&amp;lt;tr&amp;g">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hanger's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://hangermeng.top/2017/06/08/列表模板引擎进化之路/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>列表模板引擎进化之路 | Hanger's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanger's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">The brain is a good thing if you often use it.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangermeng.top/2017/06/08/列表模板引擎进化之路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanger">
+      <meta itemprop="description" content="Making progress every day">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanger's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">列表模板引擎进化之路
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-06-08 07:31:43" itemprop="dateCreated datePublished" datetime="2017-06-08T07:31:43+08:00">2017-06-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-19 14:42:29" itemprop="dateModified" datetime="2021-01-19T14:42:29+08:00">2021-01-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>平时的工作中，经常会遇到渲染列表的需求，比如下面的代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = [&#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="string">'hanger'</span>&#125;, &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">name</span>: <span class="string">'Alice'</span>&#125;]</span><br><span class="line"><span class="keyword">var</span> tableContent = <span class="string">''</span></span><br><span class="line">data.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    tableContent += <span class="string">'&lt;tr&gt;'</span> +</span><br><span class="line">        <span class="string">'&lt;th &gt;'</span> + obj.id + <span class="string">'&lt;/th&gt;'</span> +</span><br><span class="line">        <span class="string">'&lt;th&gt;'</span> + obj.name + <span class="string">'&lt;/th&gt;'</span> +</span><br><span class="line">        <span class="string">'&lt;/tr&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(tableContent)</span><br></pre></td></tr></table></figure></p>
+<p>向上面这样写一个字符串十分繁琐，而且不可复用。那么有什么办法可以解决这样的问题呢？<br>我们都知道js的replace()函数可以实现字符串的替换，replace()第二个参数可以为函数，在开启列表模板引擎进化之旅之前需要先理解<a href="https://hangermeng.top/2017/03/17/replace-%E6%96%B9%E6%B3%95/">replace方法</a>。<br>现在我要利用replace()的强大能力来解决上面这个问题。直接上最初的代码：<br><a id="more"></a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tplEngine1</span>(<span class="params">tpl, obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;%([^%&gt;]+)?%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = b.trim()</span><br><span class="line">        <span class="keyword">return</span> obj[b]</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> tpl</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> tpl = <span class="string">'&lt;tr&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;th&gt;&lt;%id%&gt;&lt;/th&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;th&gt;&lt;%name%&gt;&lt;/th&gt;'</span> +</span><br><span class="line">    <span class="string">'&lt;/tr&gt;'</span></span><br><span class="line"><span class="keyword">var</span> tableContent = <span class="string">''</span></span><br><span class="line">data.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    tableContent += tplEngine1(tpl, obj)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(tableContent)</span><br></pre></td></tr></table></figure></p>
+<p>在控制台打印一下，你会得到同样的结果，是不是觉得这样的字符串简单多了呢。<br>但是上面这个版本的模板引擎还是最简单的、功能最弱的版本，随着需求的增加，我们需要不断改进它。</p>
+<h3 id="解决两层数据对象"><a href="#解决两层数据对象" class="headerlink" title="解决两层数据对象"></a>解决两层数据对象</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tplEngine2</span>(<span class="params">tpl, obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;%([^%&gt;]+)?%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = b.trim()</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/\./</span>.test(b)) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr = b.split(<span class="string">'.'</span>)</span><br><span class="line">            <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]]</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> obj[b]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> tpl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决得到的数据是数组"><a href="#解决得到的数据是数组" class="headerlink" title="解决得到的数据是数组"></a>解决得到的数据是数组</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tplEngine3</span>(<span class="params">tpl, obj, separator</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> separator = separator || <span class="string">','</span></span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;%([^%&gt;]+)?%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = b.trim()</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/\./</span>.test(b)) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr = b.split(<span class="string">'.'</span>)</span><br><span class="line">            <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]].join(separator)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (obj[b] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> obj[b].join(separator)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> obj[b]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> tpl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="避免显示undefined"><a href="#避免显示undefined" class="headerlink" title="避免显示undefined"></a>避免显示undefined</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tplEngine4</span>(<span class="params">tpl, obj, fruitless, separator</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fruitless = fruitless || <span class="string">''</span></span><br><span class="line">	<span class="keyword">var</span> separator = separator || <span class="string">','</span></span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;%([^%&gt;]+)?%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = b.trim()</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/\./</span>.test(b)) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr = b.split(<span class="string">'.'</span>)</span><br><span class="line">            <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]].length == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]].join(separator)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]]</span><br><span class="line">                <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]]) &#123;&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (obj[b] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj[b].length == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> obj[b].join(separator)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj[b]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> obj[b]</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> tpl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="填充变量"><a href="#填充变量" class="headerlink" title="填充变量"></a>填充变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tplEngine5</span>(<span class="params">tpl, obj, fruitless, separator</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fruitless = fruitless || <span class="string">''</span></span><br><span class="line">    <span class="keyword">var</span> separator = separator || <span class="string">','</span></span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;@([^@&gt;]+)?@&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">match, $<span class="number">1</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> $<span class="number">1</span> = $<span class="number">1.</span>trim()</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>($<span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;%([^%&gt;]+)?%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = b.trim()</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/\./</span>.test(b)) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr = b.split(<span class="string">'.'</span>)</span><br><span class="line">            <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]].length == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]].join(separator)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]]</span><br><span class="line">                <span class="keyword">if</span> (obj[arr[<span class="number">0</span>]][arr[<span class="number">1</span>]]) &#123;&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (obj[b] <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj[b].length == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> obj[b].join(separator)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (obj[b]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> obj[b]</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> fruitless</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> tpl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="添加过滤函数"><a href="#添加过滤函数" class="headerlink" title="添加过滤函数"></a>添加过滤函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tplEngine6</span>(<span class="params">tpl, data, separator</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化参数</span></span><br><span class="line">    <span class="keyword">if</span> (!separator &amp;&amp; separator !== <span class="number">0</span>) &#123;</span><br><span class="line">        separator = <span class="string">','</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">$<span class="number">1</span>, filter</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/\./</span>.test($<span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr2 = $<span class="number">1.</span>split(<span class="string">'.'</span>)</span><br><span class="line">            <span class="keyword">var</span> arr3 = data[arr2[<span class="number">0</span>]][arr2[<span class="number">1</span>]]</span><br><span class="line">            <span class="keyword">if</span> (arr3 <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (filter) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr3.length; i++) &#123;</span><br><span class="line">                        arr3[i] = filter(arr3[i])</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> arr3.join(separator)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (filter) &#123;</span><br><span class="line">                    arr3 = filter(arr3)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> arr3</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> arr4 = data[$<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> (arr4 <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (filter) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr4.length; i++) &#123;</span><br><span class="line">                        arr4[i] = filter(arr4[i])</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> arr4.join(separator)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (filter) &#123;</span><br><span class="line">                    arr4 = filter(arr4)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> arr4</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 变量填充 </span></span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;@([^@&gt;]+)?@&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">match, $<span class="number">1</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> $<span class="number">1</span> = $<span class="number">1.</span>trim()</span><br><span class="line">    	<span class="keyword">if</span> (<span class="regexp">/\|/</span>.test($<span class="number">1</span>)) &#123;</span><br><span class="line">        	<span class="keyword">var</span> arr = $<span class="number">1.</span>split(<span class="string">'|'</span>)</span><br><span class="line">        	<span class="keyword">var</span> filter = <span class="built_in">eval</span>(arr[<span class="number">1</span>])</span><br><span class="line">        	<span class="keyword">var</span> variate = <span class="built_in">eval</span>(arr[<span class="number">0</span>])</span><br><span class="line">        	<span class="keyword">return</span> filter(variate)</span><br><span class="line">    	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    		<span class="keyword">return</span> <span class="built_in">eval</span>($<span class="number">1</span>)</span><br><span class="line">    	&#125;	</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 属性填充</span></span><br><span class="line">    <span class="keyword">var</span> tpl = tpl.replace(<span class="regexp">/&lt;%([^%&gt;]+)?%&gt;/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">match, $<span class="number">1</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> $<span class="number">1</span> = $<span class="number">1.</span>trim()</span><br><span class="line">        <span class="keyword">if</span> (<span class="regexp">/\|/</span>.test($<span class="number">1</span>)) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr = $<span class="number">1.</span>split(<span class="string">'|'</span>)</span><br><span class="line">            <span class="keyword">var</span> filter = <span class="built_in">eval</span>(arr[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> print(arr[<span class="number">0</span>], filter)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> print($<span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> tpl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了过滤函数，就可以处理没值的情况了，因此去掉了fruitless参数，封装了print()函数使代码更加简洁。至此，列表模板引擎已经可以处理大部分工作中遇到的情况了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/18/ES6常用语法/" rel="next" title="ES6常用语法">
+                <i class="fa fa-chevron-left"></i> ES6常用语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/24/实现双向绑定/" rel="prev" title="实现双向绑定">
+                实现双向绑定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hanger">
+            
+              <p class="site-author-name" itemprop="name">Hanger</p>
+              <p class="site-description motion-element" itemprop="description">Making progress every day</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hamger" title="GitHub &rarr; https://github.com/hamger" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:2313303800@qq.com" title="E-Mail &rarr; mailto:2313303800@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决两层数据对象"><span class="nav-number">1.</span> <span class="nav-text">解决两层数据对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决得到的数据是数组"><span class="nav-number">2.</span> <span class="nav-text">解决得到的数据是数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免显示undefined"><span class="nav-number">3.</span> <span class="nav-text">避免显示undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#填充变量"><span class="nav-number">4.</span> <span class="nav-text">填充变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加过滤函数"><span class="nav-number">5.</span> <span class="nav-text">添加过滤函数</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanger</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=7.0.1"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

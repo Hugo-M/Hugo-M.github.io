@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'ZV0EGDRD8C',
+      apiKey: '01ab18713b33dcc47e43484208996a80',
+      indexName: 'hexo_hamger',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="记录下一些常用的 Mac 命令行。 关于man命令在命令行中输入 man command-name 会返回一个该条命令的使用指南，非常详细。使用指南往往很长，可以使用 ▲（上箭头）或 ▼（下箭头）来上下移动，使用空格键来翻页，输入/和关键字来搜索，按 Q 退出。 目录操作   命令 描述 用法      mkdir 创建一个目录 mkdir dir1   rmdir 删除一个空目录 rmdir d">
+<meta name="keywords" content="Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下命令行">
+<meta property="og:url" content="https://hangermeng.top/2017/04/02/Mac下命令行/index.html">
+<meta property="og:site_name" content="Hanger&#39;s Blog">
+<meta property="og:description" content="记录下一些常用的 Mac 命令行。 关于man命令在命令行中输入 man command-name 会返回一个该条命令的使用指南，非常详细。使用指南往往很长，可以使用 ▲（上箭头）或 ▼（下箭头）来上下移动，使用空格键来翻页，输入/和关键字来搜索，按 Q 退出。 目录操作   命令 描述 用法      mkdir 创建一个目录 mkdir dir1   rmdir 删除一个空目录 rmdir d">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-19T06:42:29.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac下命令行">
+<meta name="twitter:description" content="记录下一些常用的 Mac 命令行。 关于man命令在命令行中输入 man command-name 会返回一个该条命令的使用指南，非常详细。使用指南往往很长，可以使用 ▲（上箭头）或 ▼（下箭头）来上下移动，使用空格键来翻页，输入/和关键字来搜索，按 Q 退出。 目录操作   命令 描述 用法      mkdir 创建一个目录 mkdir dir1   rmdir 删除一个空目录 rmdir d">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hanger's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://hangermeng.top/2017/04/02/Mac下命令行/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mac下命令行 | Hanger's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanger's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">The brain is a good thing if you often use it.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hangermeng.top/2017/04/02/Mac下命令行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanger">
+      <meta itemprop="description" content="Making progress every day">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanger's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac下命令行
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-04-02 10:55:57" itemprop="dateCreated datePublished" datetime="2017-04-02T10:55:57+08:00">2017-04-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-19 14:42:29" itemprop="dateModified" datetime="2021-01-19T14:42:29+08:00">2021-01-19</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录下一些常用的 Mac 命令行。</p>
+<h2 id="关于man命令"><a href="#关于man命令" class="headerlink" title="关于man命令"></a>关于man命令</h2><p>在命令行中输入 <code>man command-name</code> 会返回一个该条命令的使用指南，非常详细。<br>使用指南往往很长，可以使用 ▲（上箭头）或 ▼（下箭头）来上下移动，使用空格键来翻页，输入<code>/</code>和关键字来搜索，按 Q 退出。</p>
+<h2 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>用法 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mkdir</td>
+<td>创建一个目录</td>
+<td>mkdir dir1</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td>删除一个空目录</td>
+<td>rmdir dir1</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>重命名一个目录/文件</td>
+<td>mvdir dir1 dir2</td>
+</tr>
+<tr>
+<td>rm -r</td>
+<td>删除一个目录</td>
+<td>rm -r dir1</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>切换到指定目录</td>
+<td>cd dirPath</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>显示目录内容</td>
+<td>ls (dir1)</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示目录路径</td>
+<td>pwd</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>用法 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;</td>
+<td>创建/覆盖文件（回车进入文件编辑，编辑的内容（最后一行之前的内容）会<strong>覆盖</strong>原文件内容，<code>ctrl</code>+<code>c</code>退出并保存编辑）</td>
+<td>&gt; file1</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>创建/追加文件（回车进入文件编辑，编辑的内容（最后一行之前的内容）会<strong>追加</strong>到原文件下一行，<code>ctrl</code>+<code>c</code>退出并保存编辑）</td>
+<td>&gt;&gt; file1</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>显示文件内容</td>
+<td>cat flie1</td>
+</tr>
+<tr>
+<td>more</td>
+<td>分屏显示文件内容</td>
+<td>more file1</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>复制文件或目录</td>
+<td>cp file1 file2</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>删除一个文件</td>
+<td>rm file1</td>
+</tr>
+<tr>
+<td>flie</td>
+<td>显示文件类型</td>
+<td>file fiel1</td>
+</tr>
+<tr>
+<td>open</td>
+<td>用默认程序打开文件</td>
+<td>open fiel1</td>
+</tr>
+<tr>
+<td>nano</td>
+<td>默认编辑器打开文件</td>
+<td>nano fiel1</td>
+</tr>
+<tr>
+<td>vim</td>
+<td>使用<a href="https://hangermeng.top/2018/10/18/vim使用总结/">Vim</a>编辑文件</td>
+<td>vim file1</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>用来修改某个目录或文件的访问权限。<br>语法：<code>chmod [who] [+|-|=] [mode] file1/dir1</code><br>命令中各选项的含义为：<br>操作对象 who 可是下述字母中的任一个或者它们的组合：</p>
+<ul>
+<li>u 表示“用户（user）”，即文件或目录的所有者。</li>
+<li>g 表示“同组（group）用户”，即与文件属主有相同组ID的所有用户。</li>
+<li>o 表示“其他（others）用户”。</li>
+<li>a 表示“所有（all）用户”。它是系统默认值。</li>
+</ul>
+<p>操作符号可以是：</p>
+<ul>
+<li><code>+</code> 添加某个权限。</li>
+<li><code>-</code> 取消某个权限。</li>
+<li><code>=</code> 赋予给定权限并取消其他所有权限（如果有的话）。</li>
+</ul>
+<p>设置 mode 所表示的权限可用下述字母的任意组合：</p>
+<ul>
+<li>r 可读。</li>
+<li>w 可写。</li>
+<li>x 可执行。</li>
+<li>X 只有目标文件对某些用户是可执行的或该目标文件是目录时才追加x 属性。</li>
+<li>s 在文件执行时把进程的属主或组ID置为该文件的文件属主。</li>
+<li>t 保存程序的文本到交换设备上。</li>
+<li>u 与文件属主拥有一样的权限。</li>
+<li>g 与和文件属主同组的用户拥有一样的权限。</li>
+</ul>
+<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>用法 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sudo</td>
+<td>进入管理员模式(‘super user do’)</td>
+<td>sudo -s </td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出管理员模式</td>
+<td>exit</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>显示进程</td>
+<td>ps -u </td>
+</tr>
+<tr>
+<td>kill</td>
+<td>终止进程</td>
+<td>kill -9 [pid]</td>
+</tr>
+<tr>
+<td>clear 或 ctrl+L</td>
+<td>清屏</td>
+<td>clear </td>
+</tr>
+<tr>
+<td>alias</td>
+<td>给某个命令定义别名</td>
+<td>alias del=rm -i</td>
+</tr>
+<tr>
+<td>unalias</td>
+<td>取消对某个别名的定义</td>
+<td>unalias del</td>
+</tr>
+<tr>
+<td>find</td>
+<td>查找</td>
+<td>find -name ‘*.html’</td>
+</tr>
+<tr>
+<td>history</td>
+<td>列出最近执行过的（n条）命令</td>
+<td>history (n)</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>更改某个目录或文件的用户名和用户组</td>
+<td>chown root:root file1/dir1</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>修改某个目录或文件的访问权限</td>
+<td>chmod [who] [+ &#124;-&#124;=] [mode] file1/dir1</td>
+</tr>
+<tr>
+<td>who</td>
+<td>列出当前登入的所有用户</td>
+<td>who</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>列出当前操作的用户</td>
+<td>whoami</td>
+</tr>
+<tr>
+<td>lsof</td>
+<td>查看端口的占用情况</td>
+<td>lsof -i :[port]</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/30/跨域请求/" rel="next" title="跨域请求">
+                <i class="fa fa-chevron-left"></i> 跨域请求
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/04/正则表达式中加变量/" rel="prev" title="正则表达式中加变量">
+                正则表达式中加变量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Hanger">
+            
+              <p class="site-author-name" itemprop="name">Hanger</p>
+              <p class="site-description motion-element" itemprop="description">Making progress every day</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hamger" title="GitHub &rarr; https://github.com/hamger" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:2313303800@qq.com" title="E-Mail &rarr; mailto:2313303800@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于man命令"><span class="nav-number">1.</span> <span class="nav-text">关于man命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录操作"><span class="nav-number">2.</span> <span class="nav-text">目录操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件操作"><span class="nav-number">3.</span> <span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-number">4.</span> <span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他操作"><span class="nav-number">5.</span> <span class="nav-text">其他操作</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanger</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+  
+  
+  
+    
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+
+  
+  
+    
+  
+  <script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=7.0.1"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
