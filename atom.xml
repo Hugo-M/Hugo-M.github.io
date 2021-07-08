@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hanger&#39;s Blog</title>
+  <title>Hank&#39;s Blog</title>
   
   <subtitle>The brain is a good thing if you often use it.</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://hangermeng.top/</id>
   
   <author>
-    <name>Hanger</name>
+    <name>Hank</name>
     
   </author>
   
